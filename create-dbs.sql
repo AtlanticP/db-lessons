@@ -59,14 +59,24 @@ VALUES
 
 SELECT * FROM department;
 
+-- добавление атрибутов age, salary, perks к таблице employee
+ALTER TABLE employee 
+	ADD COLUMN Age int,
+	ADD COLUMN Salary int,
+	ADD COLUMN perks int;
 
+-- заполнить столбцы случайными значениями 8(b)
+UPDATE employee 
+	SET 
+		Salary = 1 + ROUND(RANDOM()*4)*10000::int,
+		Age = ROUND(20 + RANDOM()*25)::int,
+		perks = ROUND(1+ RANDOM()*4)*1000::int;
+		
 
-
-
-
+SELECT age, Salary, perks FROM employee;
 SELECT * FROM employee;
 
-DELETE 
 
-DROP TABLE department;  
+
+
 
