@@ -66,25 +66,6 @@ DELETE FROM employee
 DELETE FROM department 
 	WHERE departmentid = 10;
 
--- добавление атрибутов age, salary, perks к таблице employee
-ALTER TABLE employee 
-	ADD COLUMN Age int,
-	ADD COLUMN Salary int,
-	ADD COLUMN perks int;
-
--- заполнить столбцы случайными значениями 8(b)
-UPDATE employee 
-	SET 
-		Salary = ROUND((20+RANDOM()*30)::int)*1000,
-		Age = ROUND(20 + RANDOM()*25)::int,
-		perks = ROUND(1+ RANDOM()*4)*1000::int;
-		
-
-SELECT age, Salary, perks FROM employee;
-SELECT * FROM employee;
-
-SELECT ROUND((1+RANDOM()*4)::int, 2)*1000;
-
 -- table employeeSkills
 CREATE TABLE employeeSkils (
 	employeeID int REFERENCES employee(employeeID),
@@ -107,14 +88,54 @@ CREATE TABLE "assignment" (
 	hours float
 );
 
-INSERT INTO emp 
+INSERT INTO employeeskils 
+VALUES
+	(101, 'Basic'),
+	(102, 'Python'),
+	(103, 'SQL'),
+	(104, 'C++'),
+	(100, 'Pascal'),
+	(104, 'Delphi');
 
+SELECT * FROM employeeskils;
 
+INSERT INTO client (clientID, "name", address, contactperson, contactnumber)
+VALUES 
+	(1100, 'ACER', 'M.12.st.', 'Nora', '112233445566'),
+	(1101, 'MTS', 'S.P.11.st.', 'Lena', '665544332211'),
+	(1102, 'Dog', 'N.N.13 st.', 'Ivan', '123456123456'),
+	(1103, 'Cat', 'K.14 st.', 'Petr', '654321654321');
+SELECT * FROM client;
 
+INSERT INTO "assignment" (clientID, employeeID, workdate, hours)
+VALUES 
+	(1100, 100, '2009-01-10', 120),
+	(1101, 101, '2008-11-01', 10),
+	(1102, 102, '2009-12-01', 70),
+	(1103, 102, '2009-02-01', 100);
+SELECT * FROM "assignment";
 
+-- добавление атрибутов age, salary, perks к таблице employee
+ALTER TABLE employee 
+	ADD COLUMN Age int,
+	ADD COLUMN Salary int,
+	ADD COLUMN perks int;
 
+-- заполнить столбцы случайными значениями 8(b)
+UPDATE employee 
+	SET 
+		Salary = ROUND((20+RANDOM()*30)::int)*1000,
+		Age = ROUND(20 + RANDOM()*25)::int,
+		perks = ROUND(1+ RANDOM()*4)*1000::int;
+		
 
+INSERT INTO employee 
+VALUES 
+	(105, 'Fedor K.', 'syst. Programmer', 2, 46, 49000, 3000),
+	(106, 'Maria T.', 'admin. Programmer', 2, 37, 44000, 2000)
+	;
 
+SELECT * FROM employee;
 
 
 
