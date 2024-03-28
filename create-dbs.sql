@@ -1,5 +1,5 @@
 --DROP DATABASE IF EXISTS employee;
---CREATE DATABASE employee;
+CREATE DATABASE employee;
 
 -- table department
 DROP TABLE IF EXISTS department;
@@ -57,7 +57,14 @@ INSERT INTO employee (name, job, departmentID)
 VALUES 
   ('Wirt C', 'Programmer', 10);
 
+
 SELECT * FROM department;
+SELECT * FROM employee;
+
+DELETE FROM employee 
+	WHERE employeeid = 2;
+DELETE FROM department 
+	WHERE departmentid = 10;
 
 -- добавление атрибутов age, salary, perks к таблице employee
 ALTER TABLE employee 
@@ -68,13 +75,46 @@ ALTER TABLE employee
 -- заполнить столбцы случайными значениями 8(b)
 UPDATE employee 
 	SET 
-		Salary = 1 + ROUND(RANDOM()*4)*10000::int,
+		Salary = ROUND((20+RANDOM()*30)::int)*1000,
 		Age = ROUND(20 + RANDOM()*25)::int,
 		perks = ROUND(1+ RANDOM()*4)*1000::int;
 		
 
 SELECT age, Salary, perks FROM employee;
 SELECT * FROM employee;
+
+SELECT ROUND((1+RANDOM()*4)::int, 2)*1000;
+
+-- table employeeSkills
+CREATE TABLE employeeSkils (
+	employeeID int REFERENCES employee(employeeID),
+	skill varchar(15),
+	PRIMARY KEY (employeeID, skill)
+);
+
+CREATE TABLE client (
+	clientID serial PRIMARY KEY,
+	"name" varchar(40),
+	address varchar(100),
+	contactPerson varchar(80),
+	contactNumber varchar(80)
+);
+
+CREATE TABLE "assignment" (
+	clientID int REFERENCES client(clientID),
+	employeeID int REFERENCES employee(employeeID),
+	workdate date,
+	hours float
+);
+
+INSERT INTO emp 
+
+
+
+
+
+
+
 
 
 
